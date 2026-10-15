@@ -19,7 +19,7 @@ This is a Gnome Shell extension implementing modern windows tiling system by ext
 <div align="center">
   <a href="https://extensions.gnome.org/extension/7065/tiling-shell/" >
       <img src="https://img.shields.io/badge/Install%20from-extensions.gnome.org-4A86CF?style=for-the-badge&logo=Gnome&logoColor=white"/>
-  </a>
+  </a> 
 </div>
 
 <img src="https://github.com/domferr/tilingshell/blob/main/doc/horiz_summary.jpg" align="center"/>
@@ -198,6 +198,40 @@ Download the latest [release](https://github.com/domferr/tilingshell/releases). 
 ```bash
 /usr/bin/gnome-extensions enable tilingshell@ferrarodomenico.com
 ```
+
+### Instalação local no GNOME (passo a passo)
+
+Para instalar a versão deste repositório no seu usuário:
+
+1. Tenha Git, Node.js com npm e as ferramentas `glib-compile-schemas` e `glib-compile-resources` instalados. Confira a versão do GNOME com `gnome-shell --version` e veja as versões compatíveis em [`resources/metadata.json`](resources/metadata.json).
+
+2. Abra um terminal na pasta do projeto. Se ainda não tiver o código, clone o repositório:
+
+   ```bash
+   git clone https://github.com/domferr/tilingshell.git
+   cd tilingshell
+   ```
+
+3. Instale as dependências, compile e instale a extensão localmente:
+
+   ```bash
+   npm install
+   npm run build
+   npm run install:extension
+   ```
+
+   Execute esses comandos sem `sudo`. A extensão será copiada para `~/.local/share/gnome-shell/extensions/tilingshell@ferrarodomenico.com/`, substituindo os arquivos de uma instalação local existente. O script seleciona automaticamente a compilação para GNOME 42–44 (`dist_legacy`) ou GNOME 45 e posteriores (`dist`).
+
+4. Recarregue o GNOME Shell. No **Wayland**, encerre a sessão e entre novamente. No **X11**, você também pode pressionar <kbd>Alt</kbd> + <kbd>F2</kbd>, digitar `r` e pressionar <kbd>Enter</kbd>. Salve seu trabalho antes de encerrar a sessão.
+
+5. Depois de recarregar a sessão, ative a extensão e abra suas preferências:
+
+   ```bash
+   gnome-extensions enable tilingshell@ferrarodomenico.com
+   gnome-extensions prefs tilingshell@ferrarodomenico.com
+   ```
+
+Para instalar alterações feitas no código, repita os passos 3 a 5. Se a extensão não aparecer, confira seu estado com `gnome-extensions info tilingshell@ferrarodomenico.com` e consulte os logs com `npm run logs:follow`.
 
 ### Install via Source
 
